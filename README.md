@@ -5,7 +5,7 @@ This repository accompanies the manuscript
 _Trends in incidence and resistance for five major causes of bacteremia in a Canadian metropolitan area, 2006-22: a genomic and antibiotic use cohort study_
 
 
-## Project file structure
+## Structure
 ### code/
 This folder contains the code to reproduce the results and figures of the manuscript. 
 
