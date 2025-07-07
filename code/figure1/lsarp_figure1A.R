@@ -168,7 +168,7 @@ seg_model <- segmented::segmented(model_org_COI_year, npsi = 1)
           plot.margin = margin(10, 20, 10, 10)))
 
 ################################################################################
-# K. pneumoniae
+# Klebsiella pneumoniae
 ################################################################################
 # Use negative binomial
 dataset <- df_inc_org_COI_year %>% filter(ORG_LONG_NAME == "Klebsiella pneumoniae") %>% 
