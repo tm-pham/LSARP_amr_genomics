@@ -1,0 +1,10 @@
+"strain","antibiogram","onset","time_period","Est.","CI(95%).l","CI(95%).u","p_values"
+"CC30","S-S-S-S","Hospital-onset","2006-2022",-6.9,-10,-3.7,0
+"CC15","S-S-S-S","Hospital-onset","2006-2022",0.6,-3.5,4.9,0.7831
+"CC97","S-S-S-S","Hospital-onset","2006-2022",6.2,1.4,11.3,0.0109
+"CC5","S-S-S-S","Hospital-onset","2006-2022",-1.2,-4.8,2.7,0.5487
+"CC5","R-R-R-R","Hospital-onset","2006-2022",-18.6,-22.6,-14.4,0
+"CC8","S-S-S-S","Hospital-onset","2006-2022",1.1,-3.9,6.3,0.6807
+"CC8","R-R-R-R","Hospital-onset","2006-2022",-6.4,-11.7,-0.7,0.0277
+"CC45","S-S-S-S","Hospital-onset","2006-2022",-3,-6,0.2,0.0687
+"CC45","S-S-R-R","Hospital-onset","2006-2022",5.5,-1.4,12.9,0.121
