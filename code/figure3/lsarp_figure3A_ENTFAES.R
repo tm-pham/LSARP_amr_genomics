@@ -22,6 +22,10 @@ library(gridExtra)
 # Load functions and templates
 source("code/functions_templates/plotting_template.R")
 
+# Load data
+load("data/figure3/lsarp_figure3A_input_df_mlst_ab_COI_yr.RData")
+load("data/figure3/lsarp_figure3A_input_df_mlst_ab_HOI_yr.RData")
+
 ################################################################################
 # Figure 3A
 ab_colors <- c("#1B9E77", "#D95F02" ,"#E7298A")

@@ -19,32 +19,14 @@ library(lubridate)
 # Load functions and templates
 source("code/functions_templates/plotting_template.R")
 
+# Load data
+load("data/figure3/lsarp_figure3C_input_df_st117_HOI_overall_yr.RData")
+load("data/figure3/lsarp_figure3C_input_df_st117_HOI_yr.RData")
+
 ################################################################################
 # Variables
 axis_text_x <- 26
 strip_text_size <- 30
-
-################################################################################
-# Plot
-################################################################################
-(st117_yr_plot <- ggplot(df_st117_HOI_overall_yr %>% filter(HOSPITAL_ONSET_48H=="Hospital-onset"), 
-                         aes(x=ymd(YEAR, truncated=2), y = inc)) +
-    facet_wrap(.~cluster_name) + 
-    geom_line(linetype="dashed", color="darkgrey") + 
-    geom_point(size=7.5) + 
-    geom_smooth(linewidth=4, color = "black") + 
-    labs(y="Number of 30-day index isolates\n(per 100,000 patient days)") + 
-    scale_y_continuous(limits= c(0, NA)) +
-    scale_x_date(date_labels="%Y", breaks=seq(as.Date("2006-01-01", format = "%Y-%m-%d"), 
-                                              as.Date("2022-12-31", format = "%Y-%m-%d"), 
-                                              by = "year")) + 
-    scale_fill_scico_d() + 
-    theme_template() + 
-    theme(axis.text.x = element_text(size=24), 
-          axis.title.y = element_text(size=28, face="plain"),
-          strip.text = element_text(size=strip_text_size),
-          legend.position = "none", 
-          plot.background = element_rect(fill = "transparent", colour = NA)))
 
 ################################################################################
 # Overall HOI plot with segmented Poisson regression
@@ -85,6 +67,7 @@ davies.test(model, seg.Z = ~YEAR, k = 10)
 
 ################################################################################
 # Plot of ST117 by antibiogram
+################################################################################
 (plot2 <- ggplot(df_st117_HOI_yr %>%
                    filter(HOSPITAL_ONSET_48H=="Hospital-onset", 
                           ab_name %in% c("S-S-S", "R-S-S", "S-R-S", 
