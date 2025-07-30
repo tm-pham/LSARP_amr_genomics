@@ -47,7 +47,7 @@ model_COI_year <- glm(n ~ YEAR + offset(log(n_year)),
                       data = dataset, 
                       family = poisson())
 davies.test(model_COI_year, seg.Z = ~YEAR, k = 10)
-seg_model <- segmented::segmented(model_COI_year, npsi = 1)
+seg_model <- segmented::segmented(model_COI_year, npsi = 1, bonferroni = T)
 
 # Extract the breakpoints
 breaks <- seg_model$psi[, 2]
@@ -82,7 +82,7 @@ model_org_COI_year <- glm(n ~ YEAR + offset(log(n_year)),
                           family = poisson())
 
 davies.test(model_org_COI_year, seg.Z = ~YEAR, k = 5)
-seg_model <- segmented::segmented(model_org_COI_year, npsi = 1)
+seg_model <- segmented::segmented(model_org_COI_year, npsi = 1, bonferroni = T)
 
 # Extract the breakpoints
 breaks <- seg_model$psi[, 2]
@@ -110,6 +110,12 @@ breaks <- seg_model$psi[, 2]
 # Enterococcus faecalis
 ################################################################################
 dataset <- df_inc_org_COI_year %>% filter(ORG_LONG_NAME == "Enterococcus faecalis")
+model_org_COI_year <- glm(n ~ YEAR + offset(log(n_year)), 
+                          data = dataset, 
+                          family = poisson())
+selgmented(model_org_COI_year, seg.Z = ~YEAR, bonferroni = T)
+# No breakpoints selected
+
 
 (plot3 <- ggplot(data = dataset, aes(x = ymd(YEAR, truncated=2), y = inc)) +
     facet_wrap(.~ORG_LONG_NAME) + 
@@ -137,7 +143,7 @@ model_org_COI_year <- glm(n ~ YEAR + offset(log(n_year)),
                           family = poisson())
 
 davies.test(model_org_COI_year, seg.Z = ~YEAR, k = 10)
-seg_model <- segmented::segmented(model_org_COI_year, npsi = 1)
+seg_model <- segmented::segmented(model_org_COI_year, npsi = 1, bonferroni = T)
 
 # Extract the breakpoints
 (breaks <- seg_model$psi[, 2])

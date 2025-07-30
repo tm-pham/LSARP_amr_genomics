@@ -71,6 +71,7 @@ model_org_HOI_year <- glm(n ~ YEAR + offset(log(n_year)),
 
 davies.test(model_org_HOI_year, seg.Z = ~YEAR, k = 5)
 seg_model <- segmented::segmented(model_org_HOI_year, npsi = 1)
+segmented::selgmented(model_org_HOI_year, seg.Z = ~YEAR, type = "bic", Kmax = 5, bonferroni = T)
 
 # Extract the breakpoints
 (breaks <- seg_model$psi[, 2])
@@ -127,6 +128,7 @@ model_org_HOI_year <- glm(n ~ YEAR + offset(log(n_year)),
 
 davies.test(model_org_HOI_year, seg.Z = ~YEAR, k = 10)
 seg_model <- segmented::segmented(model_org_HOI_year, npsi = 1)
+segmented::selgmented(model_org_HOI_year, seg.Z = ~YEAR, type = "bic", Kmax = 3, bonferroni = T)
 
 # Extract the breakpoints
 (breaks <- seg_model$psi[, 2])
