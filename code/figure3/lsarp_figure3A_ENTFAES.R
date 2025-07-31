@@ -96,6 +96,50 @@ axis_title_y <- 28
           axis.text.x = element_text(size = axis_text_x, angle = 0)))
 
 ################################################################################
+# For ST 179 HOI, RRS and RSS phenotypes only 
+# Segmented regression
+(plot1.3 <- ggplot(df_mlst_ab_HOI_yr %>% 
+                     filter(ab_name%in%c("R-S-S", "R-R-S", "R-R-R")) %>% 
+                                          filter(cluster_name%in%c("1 (ST 179)")), 
+                   aes(x=ymd(YEAR, truncated=2), y=inc, fill=ab_name, color = ab_name)) + 
+    facet_grid(cols=vars(cluster_name)) + 
+    geom_line(linetype = "dashed", linewidth = 1.0) +
+    geom_smooth(data = df_mlst_ab_HOI_yr %>% 
+                      filter(ab_name%in%c("R-S-S")) %>% 
+                      filter(cluster_name%in%c("1 (ST 179)")), 
+                method = "lm", formula = y ~ x , size = 3, span = 1, fullrange=T, level = 0.95) +
+    stat_smooth(data = df_mlst_ab_HOI_yr %>% 
+                      filter(ab_name%in%c("R-R-S"), cluster_name%in%c("1 (ST 179)"), YEAR<2015), 
+                    method = "lm", size = 3, span = 1,level = 0.95) +
+    stat_smooth(data = df_mlst_ab_HOI_yr %>% 
+                  filter(ab_name%in%c("R-R-S"), cluster_name%in%c("1 (ST 179)"), YEAR>=2015), 
+                method = "lm", size = 3, span = 1,  level = 0.95) +
+    
+    # geom_smooth(span = 2) +
+    geom_point(shape = 21, color = "black", size = 4.5, stroke = 2) + 
+    labs(y="Number of index isolates\n(per 100,000 patient days)", 
+         fill = "", 
+         color = "") + 
+    scale_x_date(date_labels = "%Y", breaks = seq.Date(from = as.Date("2006-01-01"), 
+                                                       to = as.Date("2022-12-31"), by = "4 years")) + 
+    scale_y_continuous(limits = c(-0.4, 1.5), expand = c(0, 0)) +
+    coord_cartesian(ylim = c(0, 1.5)) + 
+    scale_fill_manual(values = ab_colors) +
+    scale_color_manual(values = ab_colors) +
+    theme_template_white()+ 
+    theme(legend.position = "none", 
+          panel.spacing = unit(1.2, "cm"),
+          plot.margin = margin(0, 0.5, 0, 0, "cm"),
+          strip.text.x = element_text(size = strip_text_size, face = "bold"),
+          strip.text.y = element_text(size = strip_text_size-1, face = "bold"),
+          axis.title.x = element_blank(), 
+          axis.title.y = element_text(size = 32),
+          axis.text.y = element_text(size = 26),
+          axis.text.x = element_text(size = 26, angle = 0)))
+ggsave(plot1.3, file = "figures/figure3/lsarp_figure3A_ST179_HOI.pdf", 
+       width = 7.65, height = 6.5)
+
+################################################################################
 # Combined plot
 (plot <- grid.arrange(plot1.1, plot1.2, ncol = 1, heights = c(1, 0.85)))
 ggsave(plot, file = "figures/figure3/lsarp_figure3A.pdf", 
