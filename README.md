@@ -1,7 +1,7 @@
 # Trends in incidence and resistance for five major causes of bacteremia in a Canadian metropolitan area, 2006-22: a genomic and antibiotic use cohort study
 
 Corresponding authors: 
-- Thi Mui Pham (tmpham@hsph.harvard.edu)
+- Thi Mui Pham (mui.k.pham@gmail.com)
 - Tatum Mortimer (tatum.mortimer@uga.edu)
 - Joshua Smith (josmith@broadinstitute.org)
   
