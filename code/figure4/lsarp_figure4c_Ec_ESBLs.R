@@ -72,6 +72,6 @@ p_histogram <- esbl_counts %>% group_by(year,gene,HOSPITAL_ONSET_48H) %>% summar
            ylab("Isolate Count") + 
            theme(axis.ticks.x=element_blank(), axis.text.x=element_blank(), plot.margin = margin(c(0,0,0,0, "cm")))
 aligned <- plot_grid(p_histogram, p, ncol = 1, align="v", axis="lr", rel_heights = c(1, 4))
-ggsave("figures/figure4/lasrp_figure_4C_ec_esbls.pdf", aligned, width = 6, height = 8, units = "in")
+ggsave("figures/figure4/lsarp_figure_4C_ec_esbls.pdf", aligned, width = 6, height = 8, units = "in")
 
 
