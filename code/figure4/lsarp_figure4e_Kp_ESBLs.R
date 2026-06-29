@@ -25,7 +25,7 @@ kp <- sequence_qc %>% select(-INDEX_30DAYS) %>% filter(str_detect(straingst_ref,
 # read amr data generated with AMRFinderPlus
 
 column_types <- cols(Name = col_character(), `Protein identifier` = col_logical(), `Contig id` = col_double(), Start = col_double(), Stop = col_double(), Strand = col_character(), `Gene symbol` = col_character(), `Sequence name` = col_character(), Scope = col_character(), `Element type` = col_character(), `Element subtype` = col_character(), Class = col_character(), Method = col_character(), `Target length` = col_double(), `Reference sequence length` = col_double(), `% Coverage of reference sequence` = col_double(), `% Identity to reference sequence` = col_double(), `Alignment length` = col_double(), `Accession of closest sequence` = col_character(), `Name of closest sequence` = col_character(), `HMM id` = col_logical(), `HMM description` = col_logical())
-genotype <- list.files(path="../data/amrfinder", full.names=TRUE) %>% map_dfr(read_tsv, col_types = column_types)
+genotype <- list.files(path="/bulk/LSARP/genomics/analyses/Klebsiella_pneumoniae/data/amrfinder", full.names=TRUE) %>% map_dfr(read_tsv, col_types = column_types)
 genotype <- unique(genotype)
 genotype_wider <- genotype %>% count(Name, `Gene symbol`) %>% pivot_wider(names_from = "Gene symbol", values_from = "n", values_fill = 0) %>% rename(sample = Name)
 
@@ -77,6 +77,6 @@ p_histogram <- esbl_counts %>% filter(year < 2021) %>% group_by(year,gene,HOSPIT
            ylab("Isolate Count") + 
            theme(axis.ticks.x=element_blank(), axis.text.x=element_blank(), plot.margin = margin(c(0,1,0,0, "cm")))
 aligned <- plot_grid(p_histogram, p, ncol = 1, align="v", axis="lr", rel_heights = c(1, 3))
-ggsave("kp_esbls.png", aligned, width = 7, height = 5, units = "in")
+ggsave("figures/figure4/lsarp_figure_4E_kp_esbls.pdf", aligned, width = 7, height = 5, units = "in")
 
 
